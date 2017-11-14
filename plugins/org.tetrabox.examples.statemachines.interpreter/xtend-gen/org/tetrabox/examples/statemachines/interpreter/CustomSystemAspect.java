@@ -1,12 +1,20 @@
 package org.tetrabox.examples.statemachines.interpreter;
 
+import com.google.common.base.Objects;
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
 import fr.inria.diverse.k3.al.annotationprocessor.Main;
 import fr.inria.diverse.k3.al.annotationprocessor.Step;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ObjectExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.tetrabox.examples.statemachines.interpreter.CustomSystemAspectCustomSystemAspectProperties;
 import org.tetrabox.examples.statemachines.interpreter.StateMachineAspect;
+import statemachines.CustomEvent;
 import statemachines.CustomSystem;
+import statemachinesexecutiondata.EventOccurrence;
+import statemachinesexecutiondata.StatemachinesexecutiondataFactory;
 
 @Aspect(className = CustomSystem.class)
 @SuppressWarnings("all")
@@ -32,7 +40,19 @@ public class CustomSystemAspect {
   
   protected static void _privk3_run(final CustomSystemAspectCustomSystemAspectProperties _self_, final CustomSystem _self, final EList<String> args) {
     for (final String a : args) {
-      StateMachineAspect.queueEventOccurrence(_self.getStatemachine(), null);
+      {
+        final Function1<CustomEvent, Boolean> _function = (CustomEvent it) -> {
+          String _name = it.getName();
+          return Boolean.valueOf(Objects.equal(_name, a));
+        };
+        final CustomEvent correspondingEvent = IterableExtensions.<CustomEvent>findFirst(_self.getEvents(), _function);
+        EventOccurrence _createEventOccurrence = StatemachinesexecutiondataFactory.eINSTANCE.createEventOccurrence();
+        final Procedure1<EventOccurrence> _function_1 = (EventOccurrence it) -> {
+          it.setEvent(correspondingEvent);
+        };
+        final EventOccurrence occurrence = ObjectExtensions.<EventOccurrence>operator_doubleArrow(_createEventOccurrence, _function_1);
+        StateMachineAspect.queueEventOccurrence(_self.getStatemachine(), occurrence);
+      }
     }
   }
 }

@@ -8,19 +8,21 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.tetrabox.examples.statemachines.interpreter.PseudostateAspectPseudostateAspectProperties;
 import org.tetrabox.examples.statemachines.interpreter.StateAspect;
 import org.tetrabox.examples.statemachines.interpreter.TransitionAspect;
+import statemachines.CustomEvent;
 import statemachines.almostuml.Event;
 import statemachines.almostuml.Pseudostate;
 import statemachines.almostuml.State;
 import statemachines.almostuml.Transition;
 import statemachines.almostuml.Trigger;
 import statemachines.almostuml.Vertex;
+import statemachinesexecutiondata.EventOccurrence;
 
 @Aspect(className = Pseudostate.class)
 @SuppressWarnings("all")
 public class PseudostateAspect extends StateAspect {
   @OverrideAspectMethod
   @Step
-  public static State handle(final Pseudostate _self, final Object eventOccurrence) {
+  public static State handle(final Pseudostate _self, final EventOccurrence eventOccurrence) {
     final org.tetrabox.examples.statemachines.interpreter.PseudostateAspectPseudostateAspectProperties _self_ = org.tetrabox.examples.statemachines.interpreter.PseudostateAspectPseudostateAspectContext.getSelf(_self);
     Object result = null;
      if (_self instanceof statemachines.almostuml.Pseudostate){
@@ -44,12 +46,12 @@ public class PseudostateAspect extends StateAspect {
     return (statemachines.almostuml.State)result;
   }
   
-  private static State super_handle(final Pseudostate _self, final Object eventOccurrence) {
+  private static State super_handle(final Pseudostate _self, final EventOccurrence eventOccurrence) {
     final org.tetrabox.examples.statemachines.interpreter.StateAspectStateAspectProperties _self_ = org.tetrabox.examples.statemachines.interpreter.StateAspectStateAspectContext.getSelf(_self);
     return  org.tetrabox.examples.statemachines.interpreter.StateAspect._privk3_handle(_self_, _self,eventOccurrence);
   }
   
-  protected static State _privk3_handle(final PseudostateAspectPseudostateAspectProperties _self_, final Pseudostate _self, final Object eventOccurrence) {
+  protected static State _privk3_handle(final PseudostateAspectPseudostateAspectProperties _self_, final Pseudostate _self, final EventOccurrence eventOccurrence) {
     final Function1<Transition, Boolean> _function = (Transition it) -> {
       Vertex _source = it.getSource();
       return Boolean.valueOf((_source == _self));
@@ -58,7 +60,8 @@ public class PseudostateAspect extends StateAspect {
     final Function1<Transition, Boolean> _function_1 = (Transition it) -> {
       final Function1<Trigger, Boolean> _function_2 = (Trigger it_1) -> {
         Event _event = it_1.getEvent();
-        return Boolean.valueOf((_event == eventOccurrence));
+        CustomEvent _event_1 = eventOccurrence.getEvent();
+        return Boolean.valueOf((_event == _event_1));
       };
       return Boolean.valueOf(IterableExtensions.<Trigger>exists(it.getTrigger(), _function_2));
     };

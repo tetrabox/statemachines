@@ -14,11 +14,12 @@ import statemachines.almostuml.PseudostateKind;
 import statemachines.almostuml.Region;
 import statemachines.almostuml.State;
 import statemachines.almostuml.StateMachine;
+import statemachinesexecutiondata.EventOccurrence;
 
 @Aspect(className = StateMachine.class)
 @SuppressWarnings("all")
 public class StateMachineAspect {
-  public static void queueEventOccurrence(final StateMachine _self, final Object eventOccurrence) {
+  public static void queueEventOccurrence(final StateMachine _self, final EventOccurrence eventOccurrence) {
     final org.tetrabox.examples.statemachines.interpreter.StateMachineAspectStateMachineAspectProperties _self_ = org.tetrabox.examples.statemachines.interpreter.StateMachineAspectStateMachineAspectContext.getSelf(_self);
     _privk3_queueEventOccurrence(_self_, _self,eventOccurrence);;
   }
@@ -53,19 +54,20 @@ public class StateMachineAspect {
     _privk3_currentState(_self_, _self,currentState);;
   }
   
-  public static EList<Object> queue(final StateMachine _self) {
+  public static EList<EventOccurrence> queue(final StateMachine _self) {
     final org.tetrabox.examples.statemachines.interpreter.StateMachineAspectStateMachineAspectProperties _self_ = org.tetrabox.examples.statemachines.interpreter.StateMachineAspectStateMachineAspectContext.getSelf(_self);
     Object result = null;
     result = _privk3_queue(_self_, _self);;
-    return (org.eclipse.emf.common.util.EList<java.lang.Object>)result;
+    return (org.eclipse.emf.common.util.EList<statemachinesexecutiondata.EventOccurrence>)result;
   }
   
-  public static void queue(final StateMachine _self, final EList<Object> queue) {
+  public static void queue(final StateMachine _self, final EList<EventOccurrence> queue) {
     final org.tetrabox.examples.statemachines.interpreter.StateMachineAspectStateMachineAspectProperties _self_ = org.tetrabox.examples.statemachines.interpreter.StateMachineAspectStateMachineAspectContext.getSelf(_self);
     _privk3_queue(_self_, _self,queue);;
   }
   
-  protected static void _privk3_queueEventOccurrence(final StateMachineAspectStateMachineAspectProperties _self_, final StateMachine _self, final Object eventOccurrence) {
+  protected static void _privk3_queueEventOccurrence(final StateMachineAspectStateMachineAspectProperties _self_, final StateMachine _self, final EventOccurrence eventOccurrence) {
+    StateMachineAspect.queue(_self).add(eventOccurrence);
   }
   
   protected static void _privk3_run(final StateMachineAspectStateMachineAspectProperties _self_, final StateMachine _self, final EList<String> args) {
@@ -74,8 +76,8 @@ public class StateMachineAspect {
       return Boolean.valueOf(Objects.equal(_kind, PseudostateKind.INITIAL));
     };
     StateMachineAspect.currentState(_self, IterableExtensions.<Pseudostate>findFirst(Iterables.<Pseudostate>filter(IterableExtensions.<Region>head(_self.getRegion()).getSubvertex(), Pseudostate.class), _function));
-    EList<Object> _queue = StateMachineAspect.queue(_self);
-    for (final Object eventOccurrence : _queue) {
+    EList<EventOccurrence> _queue = StateMachineAspect.queue(_self);
+    for (final EventOccurrence eventOccurrence : _queue) {
       StateMachineAspect.currentState(_self, StateAspect.handle(StateMachineAspect.currentState(_self), eventOccurrence));
     }
   }
@@ -117,7 +119,7 @@ public class StateMachineAspect {
     }
   }
   
-  protected static EList<Object> _privk3_queue(final StateMachineAspectStateMachineAspectProperties _self_, final StateMachine _self) {
+  protected static EList<EventOccurrence> _privk3_queue(final StateMachineAspectStateMachineAspectProperties _self_, final StateMachine _self) {
     try {
     	for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
     		if (m.getName().equals("getQueue") &&
@@ -136,7 +138,7 @@ public class StateMachineAspect {
     return _self_.queue;
   }
   
-  protected static void _privk3_queue(final StateMachineAspectStateMachineAspectProperties _self_, final StateMachine _self, final EList<Object> queue) {
+  protected static void _privk3_queue(final StateMachineAspectStateMachineAspectProperties _self_, final StateMachine _self, final EList<EventOccurrence> queue) {
     boolean setterCalled = false;
     try {
     	for (java.lang.reflect.Method m : _self.getClass().getMethods()) {

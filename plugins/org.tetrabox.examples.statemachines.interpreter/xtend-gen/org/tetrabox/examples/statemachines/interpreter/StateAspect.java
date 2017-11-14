@@ -11,7 +11,9 @@ public class StateAspect {
   public static State handle(final State _self, final Object eventOccurrence) {
     final org.tetrabox.examples.statemachines.interpreter.StateAspectStateAspectProperties _self_ = org.tetrabox.examples.statemachines.interpreter.StateAspectStateAspectContext.getSelf(_self);
     Object result = null;
-     if (_self instanceof statemachines.almostuml.Pseudostate){
+     if (_self instanceof statemachines.almostuml.FinalState){
+    					result = org.tetrabox.examples.statemachines.interpreter.FinalStateAspect.handle((statemachines.almostuml.FinalState)_self,eventOccurrence);
+    } else  if (_self instanceof statemachines.almostuml.Pseudostate){
     					result = org.tetrabox.examples.statemachines.interpreter.PseudostateAspect.handle((statemachines.almostuml.Pseudostate)_self,eventOccurrence);
     } else  if (_self instanceof statemachines.almostuml.State){
     					result = org.tetrabox.examples.statemachines.interpreter.StateAspect._privk3_handle(_self_, (statemachines.almostuml.State)_self,eventOccurrence);

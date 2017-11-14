@@ -19,6 +19,9 @@ import statemachines.almostuml.Trigger
 import static extension org.tetrabox.examples.statemachines.interpreter.StateAspect.*
 import static extension org.tetrabox.examples.statemachines.interpreter.StateMachineAspect.*
 import static extension org.tetrabox.examples.statemachines.interpreter.TransitionAspect.*
+import statemachinesexecutiondata.EventOccurrence
+import statemachinesexecutiondata.StatemachinesexecutiondataFactory
+import org.eclipse.emf.common.util.BasicEList
 
 @Aspect(className=CustomSystem)
 class CustomSystemAspect {
@@ -29,22 +32,25 @@ class CustomSystemAspect {
 
 		// Transform entered strings into a queue of event occurrences
 		for (a : args) {
-			_self.statemachine.queueEventOccurrence(null) // TODO
+			val correspondingEvent = _self.events.findFirst[it.name == a]
+			val occurrence = StatemachinesexecutiondataFactory::eINSTANCE.createEventOccurrence => [
+				event = correspondingEvent
+			]
+			_self.statemachine.queueEventOccurrence(occurrence)
 		}
 
 	}
 
 }
 
-
 @Aspect(className=StateMachine)
-class StateMachineAspect  {
+class StateMachineAspect {
 
 	public State currentState
-	public EList<Object> queue
+	public EList<EventOccurrence> queue = new BasicEList<EventOccurrence>
 
-	def void queueEventOccurrence(Object eventOccurrence) {
-		// TODO
+	def void queueEventOccurrence(EventOccurrence eventOccurrence) {
+		_self.queue.add(eventOccurrence)
 	}
 
 	@Step
@@ -55,6 +61,7 @@ class StateMachineAspect  {
 			it.kind == PseudostateKind::INITIAL
 		]
 
+		// Empty the event queue into the states
 		for (eventOccurrence : _self.queue) {
 			_self.currentState = _self.currentState.handle(eventOccurrence)
 		}
@@ -71,9 +78,8 @@ class StateAspect {
 
 }
 
-
 @Aspect(className=Transition)
-class TransitionAspect  {
+class TransitionAspect {
 
 	@Step
 	def State fire() {
@@ -82,22 +88,14 @@ class TransitionAspect  {
 
 }
 
-@Aspect(className=Trigger)
-class TriggerAspect  {
-}
-
-@Aspect(className=Constraint)
-abstract class ConstraintAspect {
-}
-
-
-
-@Aspect(className=Event)
-abstract class EventAspect {
-}
-
 @Aspect(className=FinalState)
 class FinalStateAspect extends StateAspect {
+
+	@OverrideAspectMethod
+	@Step
+	def State handle(EventOccurrence eventOccurrence) {
+		return _self
+	}
 }
 
 @Aspect(className=Pseudostate)
@@ -105,9 +103,9 @@ class PseudostateAspect extends StateAspect {
 
 	@OverrideAspectMethod
 	@Step
-	def State handle(Object eventOccurrence) {
+	def State handle(EventOccurrence eventOccurrence) {
 		val outTransitions = _self.container.transition.filter[it.source === _self]
-		val candidate = outTransitions.findFirst[it.trigger.exists[it.event === eventOccurrence]] // TODO		
+		val candidate = outTransitions.findFirst[it.trigger.exists[it.event === eventOccurrence.event]] // TODO		
 		if (candidate !== null) {
 			return candidate.fire
 		} else {
