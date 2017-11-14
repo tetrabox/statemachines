@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statemachines:CustomSystem
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:almostuml="almostuml"
+    xmlns:statemachines="statemachines"
+    xsi:schemaLocation="almostuml ../../org.tetrabox.examples.statemachines.abstractsyntax/model/statemachines.ecore#//almostuml statemachines ../../org.tetrabox.examples.statemachines.abstractsyntax/model/statemachines.ecore">
+  <statemachine
+      name="test1">
+    <region>
+      <subvertex
+          xsi:type="almostuml:Pseudostate"
+          name="s1"/>
+      <subvertex
+          xsi:type="almostuml:FinalState"
+          name="s2"/>
+      <transition
+          name="t1"
+          source="//@statemachine/@region.0/@subvertex.0"
+          target="//@statemachine/@region.0/@subvertex.1">
+        <trigger
+            event="//@events.0"/>
+      </transition>
+    </region>
+  </statemachine>
+  <events name="x"/>
+</statemachines:CustomSystem>
