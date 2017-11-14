@@ -24,6 +24,7 @@ public interface StateMachine extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Region</b></em>' containment reference list.
 	 * The list contents are of type {@link statemachines.almostuml.Region}.
+	 * It is bidirectional and its opposite is '{@link statemachines.almostuml.Region#getStateMachine <em>State Machine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Region</em>' containment reference list isn't clear,
@@ -32,7 +33,8 @@ public interface StateMachine extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Region</em>' containment reference list.
 	 * @see statemachines.almostuml.AlmostumlPackage#getStateMachine_Region()
-	 * @model containment="true" required="true"
+	 * @see statemachines.almostuml.Region#getStateMachine
+	 * @model opposite="stateMachine" containment="true" required="true"
 	 * @generated
 	 */
 	EList<Region> getRegion();

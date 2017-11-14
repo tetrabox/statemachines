@@ -4,14 +4,18 @@ package statemachines.almostuml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import statemachines.almostuml.AlmostumlPackage;
 import statemachines.almostuml.Behavior;
+import statemachines.almostuml.Region;
 import statemachines.almostuml.State;
+import statemachines.almostuml.Vertex;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +25,7 @@ import statemachines.almostuml.State;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link statemachines.almostuml.impl.StateImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link statemachines.almostuml.impl.StateImpl#getEntry <em>Entry</em>}</li>
  *   <li>{@link statemachines.almostuml.impl.StateImpl#getExit <em>Exit</em>}</li>
  *   <li>{@link statemachines.almostuml.impl.StateImpl#getDoActivity <em>Do Activity</em>}</li>
@@ -76,6 +81,47 @@ public class StateImpl extends NamedElementImpl implements State {
 	@Override
 	protected EClass eStaticClass() {
 		return AlmostumlPackage.Literals.STATE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Region getContainer() {
+		if (eContainerFeatureID() != AlmostumlPackage.STATE__CONTAINER) return null;
+		return (Region)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainer(Region newContainer, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newContainer, AlmostumlPackage.STATE__CONTAINER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainer(Region newContainer) {
+		if (newContainer != eInternalContainer() || (eContainerFeatureID() != AlmostumlPackage.STATE__CONTAINER && newContainer != null)) {
+			if (EcoreUtil.isAncestor(this, newContainer))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainer != null)
+				msgs = ((InternalEObject)newContainer).eInverseAdd(this, AlmostumlPackage.REGION__SUBVERTEX, Region.class, msgs);
+			msgs = basicSetContainer(newContainer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AlmostumlPackage.STATE__CONTAINER, newContainer, newContainer));
 	}
 
 	/**
@@ -198,8 +244,54 @@ public class StateImpl extends NamedElementImpl implements State {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AlmostumlPackage.STATE__CONTAINER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetContainer((Region)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AlmostumlPackage.STATE__CONTAINER:
+				return basicSetContainer(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case AlmostumlPackage.STATE__CONTAINER:
+				return eInternalContainer().eInverseRemove(this, AlmostumlPackage.REGION__SUBVERTEX, Region.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case AlmostumlPackage.STATE__CONTAINER:
+				return getContainer();
 			case AlmostumlPackage.STATE__ENTRY:
 				if (resolve) return getEntry();
 				return basicGetEntry();
@@ -221,6 +313,9 @@ public class StateImpl extends NamedElementImpl implements State {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case AlmostumlPackage.STATE__CONTAINER:
+				setContainer((Region)newValue);
+				return;
 			case AlmostumlPackage.STATE__ENTRY:
 				setEntry((Behavior)newValue);
 				return;
@@ -242,6 +337,9 @@ public class StateImpl extends NamedElementImpl implements State {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case AlmostumlPackage.STATE__CONTAINER:
+				setContainer((Region)null);
+				return;
 			case AlmostumlPackage.STATE__ENTRY:
 				setEntry((Behavior)null);
 				return;
@@ -263,6 +361,8 @@ public class StateImpl extends NamedElementImpl implements State {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case AlmostumlPackage.STATE__CONTAINER:
+				return getContainer() != null;
 			case AlmostumlPackage.STATE__ENTRY:
 				return entry != null;
 			case AlmostumlPackage.STATE__EXIT:
@@ -271,6 +371,38 @@ public class StateImpl extends NamedElementImpl implements State {
 				return doActivity != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Vertex.class) {
+			switch (derivedFeatureID) {
+				case AlmostumlPackage.STATE__CONTAINER: return AlmostumlPackage.VERTEX__CONTAINER;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Vertex.class) {
+			switch (baseFeatureID) {
+				case AlmostumlPackage.VERTEX__CONTAINER: return AlmostumlPackage.STATE__CONTAINER;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //StateImpl

@@ -10,8 +10,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import statemachines.almostuml.AlmostumlPackage;
@@ -68,9 +67,24 @@ public class StateMachineImpl extends NamedElementImpl implements StateMachine {
 	 */
 	public EList<Region> getRegion() {
 		if (region == null) {
-			region = new EObjectContainmentEList<Region>(Region.class, this, AlmostumlPackage.STATE_MACHINE__REGION);
+			region = new EObjectContainmentWithInverseEList<Region>(Region.class, this, AlmostumlPackage.STATE_MACHINE__REGION, AlmostumlPackage.REGION__STATE_MACHINE);
 		}
 		return region;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AlmostumlPackage.STATE_MACHINE__REGION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRegion()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

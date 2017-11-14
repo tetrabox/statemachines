@@ -169,13 +169,22 @@ public interface AlmostumlPackage extends EPackage {
 	int REGION__TRANSITION = 1;
 
 	/**
+	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION__STATE_MACHINE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Region</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REGION_FEATURE_COUNT = 2;
+	int REGION_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Region</em>' class.
@@ -206,13 +215,22 @@ public interface AlmostumlPackage extends EPackage {
 	int STATE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__CONTAINER = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Entry</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__ENTRY = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int STATE__ENTRY = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Exit</b></em>' reference.
@@ -221,7 +239,7 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__EXIT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int STATE__EXIT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Do Activity</b></em>' reference.
@@ -230,7 +248,7 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__DO_ACTIVITY = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int STATE__DO_ACTIVITY = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>State</em>' class.
@@ -239,7 +257,7 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int STATE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>State</em>' class.
@@ -270,13 +288,22 @@ public interface AlmostumlPackage extends EPackage {
 	int VERTEX__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX__CONTAINER = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Vertex</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int VERTEX_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Vertex</em>' class.
@@ -537,6 +564,15 @@ public interface AlmostumlPackage extends EPackage {
 	int FINAL_STATE__NAME = STATE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_STATE__CONTAINER = STATE__CONTAINER;
+
+	/**
 	 * The feature id for the '<em><b>Entry</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -599,6 +635,15 @@ public interface AlmostumlPackage extends EPackage {
 	 * @ordered
 	 */
 	int PSEUDOSTATE__NAME = STATE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PSEUDOSTATE__CONTAINER = STATE__CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Entry</b></em>' reference.
@@ -719,6 +764,17 @@ public interface AlmostumlPackage extends EPackage {
 	EReference getRegion_Transition();
 
 	/**
+	 * Returns the meta object for the container reference '{@link statemachines.almostuml.Region#getStateMachine <em>State Machine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>State Machine</em>'.
+	 * @see statemachines.almostuml.Region#getStateMachine()
+	 * @see #getRegion()
+	 * @generated
+	 */
+	EReference getRegion_StateMachine();
+
+	/**
 	 * Returns the meta object for class '{@link statemachines.almostuml.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -770,6 +826,17 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getVertex();
+
+	/**
+	 * Returns the meta object for the container reference '{@link statemachines.almostuml.Vertex#getContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Container</em>'.
+	 * @see statemachines.almostuml.Vertex#getContainer()
+	 * @see #getVertex()
+	 * @generated
+	 */
+	EReference getVertex_Container();
 
 	/**
 	 * Returns the meta object for class '{@link statemachines.almostuml.Transition <em>Transition</em>}'.
@@ -1017,6 +1084,14 @@ public interface AlmostumlPackage extends EPackage {
 		EReference REGION__TRANSITION = eINSTANCE.getRegion_Transition();
 
 		/**
+		 * The meta object literal for the '<em><b>State Machine</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REGION__STATE_MACHINE = eINSTANCE.getRegion_StateMachine();
+
+		/**
 		 * The meta object literal for the '{@link statemachines.almostuml.impl.StateImpl <em>State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1059,6 +1134,14 @@ public interface AlmostumlPackage extends EPackage {
 		 * @generated
 		 */
 		EClass VERTEX = eINSTANCE.getVertex();
+
+		/**
+		 * The meta object literal for the '<em><b>Container</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VERTEX__CONTAINER = eINSTANCE.getVertex_Container();
 
 		/**
 		 * The meta object literal for the '{@link statemachines.almostuml.impl.TransitionImpl <em>Transition</em>}' class.
