@@ -4,6 +4,7 @@ import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.Main
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import fr.inria.diverse.k3.al.annotationprocessor.Step
+import java.util.List
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.common.util.EList
 import statemachines.CustomSystem
@@ -25,7 +26,7 @@ class CustomSystemAspect {
 
 	@Main
 	@Step
-	def void run(EList<String> args) {
+	def void run(List<String> args) {
 
 		// Transform entered strings into a queue of event occurrences
 		for (a : args) {
@@ -35,6 +36,8 @@ class CustomSystemAspect {
 			]
 			_self.statemachine.queueEventOccurrence(occurrence)
 		}
+		_self.statemachine.run()
+		println("End of execution")
 
 	}
 
@@ -51,16 +54,19 @@ class StateMachineAspect {
 	}
 
 	@Step
-	def void run(EList<String> args) {
+	def void run() {
 
 		// Find initial state
 		_self.currentState = _self.region.head.subvertex.filter(Pseudostate).findFirst [
 			it.kind == PseudostateKind::INITIAL
 		]
+		
+		println("Initial state: "+_self.currentState.name)
 
 		// Empty the event queue into the states
 		for (eventOccurrence : _self.queue) {
 			_self.currentState = _self.currentState.handle(eventOccurrence)
+			println("Current state: "+_self.currentState.name)
 		}
 	}
 
@@ -69,7 +75,7 @@ class StateMachineAspect {
 @Aspect(className=State)
 class StateAspect {
 
-	def State handle(Object eventOccurrence) {
+	def State handle(EventOccurrence eventOccurrence) {
 		throw new Exception("handle must be overridden for managing : " + _self)
 	}
 
@@ -80,6 +86,7 @@ class TransitionAspect {
 
 	@Step
 	def State fire() {
+		println("Firing "+_self.name)
 		return _self.target as State
 	}
 
@@ -101,6 +108,7 @@ class PseudostateAspect extends StateAspect {
 	@OverrideAspectMethod
 	@Step
 	def State handle(EventOccurrence eventOccurrence) {
+		println("Handling occurence of "+eventOccurrence.event.name)
 		val outTransitions = _self.container.transition.filter[it.source === _self]
 		val candidate = outTransitions.findFirst[it.trigger.exists[it.event === eventOccurrence.event]] // TODO		
 		if (candidate !== null) {
