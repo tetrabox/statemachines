@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated statemachines -->
+      <package
+            uri="statemachines"
+            class="statemachines.StatemachinesPackage"
+            genModel="model/statemachines.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated statemachines -->
+      <package
+            uri="almostuml"
+            class="statemachines.almostuml.AlmostumlPackage"
+            genModel="model/statemachines.genmodel"/>
+   </extension>
+
+</plugin>
