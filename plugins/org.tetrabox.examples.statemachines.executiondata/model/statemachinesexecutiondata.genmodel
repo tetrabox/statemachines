@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.tetrabox.examples.statemachines.executiondata/src" modelPluginID="org.tetrabox.examples.statemachines.executiondata" modelName="Statemachinesexecutiondata" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>statemachinesexecutiondata.ecore</foreignModel>
+  <genPackages prefix="Statemachinesexecutiondata" disposableProviderFactory="true">
+    <ecorePackage href="statemachinesexecutiondata.ecore#/"/>
+    <genClasses>
+      <ecoreClass href="statemachinesexecutiondata.ecore#//EventOccurrence"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="statemachinesexecutiondata.ecore#//EventOccurrence/event"/>
+      </genFeatures>
+    </genClasses>
+  </genPackages>
+  <usedGenPackages href="../../org.tetrabox.examples.statemachines.abstractsyntax/model/statemachines.genmodel#//statemachines"/>
+</genmodel:GenModel>

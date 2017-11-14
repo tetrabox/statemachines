@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated statemachinesexecutiondata -->
+      <package
+            uri="statemachinesexecutiondata"
+            class="statemachinesexecutiondata.StatemachinesexecutiondataPackage"
+            genModel="model/statemachinesexecutiondata.genmodel"/>
+   </extension>
+
+</plugin>
