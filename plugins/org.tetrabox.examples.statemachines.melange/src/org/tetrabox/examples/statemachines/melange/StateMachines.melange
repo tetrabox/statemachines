@@ -6,6 +6,8 @@ external language StateMachines {
 }
 
 language InterpretedStateMachines inherits StateMachines {
- with org.tetrabox.examples.statemachines.interpreter.*
+
+	syntax "platform:/resource/org.tetrabox.examples.statemachines.executiondata/model/statemachinesexecutiondata.ecore"
+	 with org.tetrabox.examples.statemachines.interpreter.*
 
 }
