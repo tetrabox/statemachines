@@ -4,24 +4,21 @@ import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.Main
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import fr.inria.diverse.k3.al.annotationprocessor.Step
+import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.common.util.EList
 import statemachines.CustomSystem
-import statemachines.almostuml.Constraint
-import statemachines.almostuml.Event
 import statemachines.almostuml.FinalState
 import statemachines.almostuml.Pseudostate
 import statemachines.almostuml.PseudostateKind
 import statemachines.almostuml.State
 import statemachines.almostuml.StateMachine
 import statemachines.almostuml.Transition
-import statemachines.almostuml.Trigger
+import statemachinesexecutiondata.EventOccurrence
+import statemachinesexecutiondata.StatemachinesexecutiondataFactory
 
 import static extension org.tetrabox.examples.statemachines.interpreter.StateAspect.*
 import static extension org.tetrabox.examples.statemachines.interpreter.StateMachineAspect.*
 import static extension org.tetrabox.examples.statemachines.interpreter.TransitionAspect.*
-import statemachinesexecutiondata.EventOccurrence
-import statemachinesexecutiondata.StatemachinesexecutiondataFactory
-import org.eclipse.emf.common.util.BasicEList
 
 @Aspect(className=CustomSystem)
 class CustomSystemAspect {
