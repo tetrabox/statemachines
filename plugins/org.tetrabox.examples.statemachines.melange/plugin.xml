@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension point="org.eclipse.gemoc.gemoc_language_workbench.sequential.xdsml">
+    <XDSML_Definition modelLoader_class="org.eclipse.gemoc.executionframework.extensions.sirius.modelloader.DefaultModelLoader" name="org.tetrabox.examples.statemachines.InterpretedStateMachines" xdsmlFilePath="/org.tetrabox.examples.statemachines.melange/src/org/tetrabox/examples/statemachines/melange/StateMachines.melange" />
+  </extension>
+  <extension point="fr.inria.diverse.melange.modeltype">
+    <modeltype id="org.tetrabox.examples.statemachines.StateMachinesMT" uri="http://org.tetrabox.examples.statemachines.statemachinesmt/">
+      <subtyping modeltypeId="org.tetrabox.examples.statemachines.InterpretedStateMachinesMT" />
+    </modeltype>
+  </extension>
+  <extension point="fr.inria.diverse.melange.language">
+    <language aspects="" entryPoints="" exactType="org.tetrabox.examples.statemachines.StateMachinesMT" id="org.tetrabox.examples.statemachines.StateMachines" uri="statemachines">
+      <adapter class="org.tetrabox.examples.statemachines.statemachines.adapters.interpretedstatemachinesmt.StateMachinesAdapter" modeltypeId="org.tetrabox.examples.statemachines.InterpretedStateMachinesMT" />
+    </language>
+  </extension>
+</plugin>
