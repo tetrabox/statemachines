@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated statemachines -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="statemachines.presentation.StatemachinesModelWizardID"
+            name="%_UI_StatemachinesModelWizard_label"
+            class="statemachines.presentation.StatemachinesModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/StatemachinesModelFile.gif">
+         <description>%_UI_StatemachinesModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated statemachines -->
+      <editor
+            id="statemachines.presentation.StatemachinesEditorID"
+            name="%_UI_StatemachinesEditor_label"
+            icon="icons/full/obj16/StatemachinesModelFile.gif"
+            extensions="statemachines"
+            class="statemachines.presentation.StatemachinesEditor"
+            contributorClass="statemachines.presentation.StatemachinesActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated statemachines -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="statemachines.almostuml.presentation.AlmostumlModelWizardID"
+            name="%_UI_AlmostumlModelWizard_label"
+            class="statemachines.almostuml.presentation.AlmostumlModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/AlmostumlModelFile.gif">
+         <description>%_UI_AlmostumlModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated statemachines -->
+      <editor
+            id="statemachines.almostuml.presentation.AlmostumlEditorID"
+            name="%_UI_AlmostumlEditor_label"
+            icon="icons/full/obj16/AlmostumlModelFile.gif"
+            extensions="almostuml"
+            class="statemachines.almostuml.presentation.AlmostumlEditor"
+            contributorClass="statemachines.almostuml.presentation.AlmostumlActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
