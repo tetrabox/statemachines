@@ -2,15 +2,19 @@
  */
 package statemachines.almostuml.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import statemachines.almostuml.AlmostumlPackage;
 import statemachines.almostuml.Behavior;
 import statemachines.almostuml.Region;
@@ -29,6 +33,7 @@ import statemachines.almostuml.Vertex;
  *   <li>{@link statemachines.almostuml.impl.StateImpl#getEntry <em>Entry</em>}</li>
  *   <li>{@link statemachines.almostuml.impl.StateImpl#getExit <em>Exit</em>}</li>
  *   <li>{@link statemachines.almostuml.impl.StateImpl#getDoActivity <em>Do Activity</em>}</li>
+ *   <li>{@link statemachines.almostuml.impl.StateImpl#getRegion <em>Region</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,6 +68,16 @@ public class StateImpl extends NamedElementImpl implements State {
 	 * @ordered
 	 */
 	protected Behavior doActivity;
+
+	/**
+	 * The cached value of the '{@link #getRegion() <em>Region</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRegion()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Region> region;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -243,6 +258,18 @@ public class StateImpl extends NamedElementImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Region> getRegion() {
+		if (region == null) {
+			region = new EObjectContainmentEList<Region>(Region.class, this, AlmostumlPackage.STATE__REGION);
+		}
+		return region;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -264,6 +291,8 @@ public class StateImpl extends NamedElementImpl implements State {
 		switch (featureID) {
 			case AlmostumlPackage.STATE__CONTAINER:
 				return basicSetContainer(null, msgs);
+			case AlmostumlPackage.STATE__REGION:
+				return ((InternalEList<?>)getRegion()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -301,6 +330,8 @@ public class StateImpl extends NamedElementImpl implements State {
 			case AlmostumlPackage.STATE__DO_ACTIVITY:
 				if (resolve) return getDoActivity();
 				return basicGetDoActivity();
+			case AlmostumlPackage.STATE__REGION:
+				return getRegion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -310,6 +341,7 @@ public class StateImpl extends NamedElementImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -324,6 +356,10 @@ public class StateImpl extends NamedElementImpl implements State {
 				return;
 			case AlmostumlPackage.STATE__DO_ACTIVITY:
 				setDoActivity((Behavior)newValue);
+				return;
+			case AlmostumlPackage.STATE__REGION:
+				getRegion().clear();
+				getRegion().addAll((Collection<? extends Region>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -349,6 +385,9 @@ public class StateImpl extends NamedElementImpl implements State {
 			case AlmostumlPackage.STATE__DO_ACTIVITY:
 				setDoActivity((Behavior)null);
 				return;
+			case AlmostumlPackage.STATE__REGION:
+				getRegion().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -369,6 +408,8 @@ public class StateImpl extends NamedElementImpl implements State {
 				return exit != null;
 			case AlmostumlPackage.STATE__DO_ACTIVITY:
 				return doActivity != null;
+			case AlmostumlPackage.STATE__REGION:
+				return region != null && !region.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

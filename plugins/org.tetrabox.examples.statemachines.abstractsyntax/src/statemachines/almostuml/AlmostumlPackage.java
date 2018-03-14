@@ -151,13 +151,22 @@ public interface AlmostumlPackage extends EPackage {
 	int REGION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Subvertex</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REGION__SUBVERTEX = 0;
+	int REGION__SUBVERTEX = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Transition</b></em>' containment reference list.
@@ -166,7 +175,7 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION__TRANSITION = 1;
+	int REGION__TRANSITION = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
@@ -175,7 +184,7 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION__STATE_MACHINE = 2;
+	int REGION__STATE_MACHINE = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Region</em>' class.
@@ -184,7 +193,7 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION_FEATURE_COUNT = 3;
+	int REGION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Region</em>' class.
@@ -193,7 +202,7 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION_OPERATION_COUNT = 0;
+	int REGION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link statemachines.almostuml.impl.StateImpl <em>State</em>}' class.
@@ -251,13 +260,22 @@ public interface AlmostumlPackage extends EPackage {
 	int STATE__DO_ACTIVITY = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Region</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__REGION = NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int STATE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>State</em>' class.
@@ -600,6 +618,15 @@ public interface AlmostumlPackage extends EPackage {
 	int FINAL_STATE__DO_ACTIVITY = STATE__DO_ACTIVITY;
 
 	/**
+	 * The feature id for the '<em><b>Region</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_STATE__REGION = STATE__REGION;
+
+	/**
 	 * The number of structural features of the '<em>Final State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -671,6 +698,15 @@ public interface AlmostumlPackage extends EPackage {
 	 * @ordered
 	 */
 	int PSEUDOSTATE__DO_ACTIVITY = STATE__DO_ACTIVITY;
+
+	/**
+	 * The feature id for the '<em><b>Region</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PSEUDOSTATE__REGION = STATE__REGION;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -816,6 +852,17 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getState_DoActivity();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link statemachines.almostuml.State#getRegion <em>Region</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Region</em>'.
+	 * @see statemachines.almostuml.State#getRegion()
+	 * @see #getState()
+	 * @generated
+	 */
+	EReference getState_Region();
 
 	/**
 	 * Returns the meta object for class '{@link statemachines.almostuml.Vertex <em>Vertex</em>}'.
@@ -1124,6 +1171,14 @@ public interface AlmostumlPackage extends EPackage {
 		 * @generated
 		 */
 		EReference STATE__DO_ACTIVITY = eINSTANCE.getState_DoActivity();
+
+		/**
+		 * The meta object literal for the '<em><b>Region</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE__REGION = eINSTANCE.getState_Region();
 
 		/**
 		 * The meta object literal for the '{@link statemachines.almostuml.impl.VertexImpl <em>Vertex</em>}' class.

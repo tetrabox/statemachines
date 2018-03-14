@@ -14,13 +14,15 @@ import statemachines.CustomSystem
 import statemachines.almostuml.FinalState
 import statemachines.almostuml.Pseudostate
 import statemachines.almostuml.PseudostateKind
+import statemachines.almostuml.Region
 import statemachines.almostuml.State
 import statemachines.almostuml.StateMachine
 import statemachines.almostuml.Transition
 
 import static extension org.tetrabox.examples.statemachines.interpreter.StateAspect.*
-import static extension org.tetrabox.examples.statemachines.interpreter.StateMachineAspect.*
 import static extension org.tetrabox.examples.statemachines.interpreter.TransitionAspect.*
+import static extension org.tetrabox.examples.statemachines.interpreter.RegionAspect.*
+import static extension org.tetrabox.examples.statemachines.interpreter.StateMachineAspect.*
 
 @Aspect(className=CustomSystem)
 class CustomSystemAspect {
@@ -34,57 +36,78 @@ class CustomSystemAspect {
 				val occurrence = StatemachinesFactory::eINSTANCE.createEventOccurrence => [
 					event = correspondingEvent
 				]
-				_self.statemachine.queueEventOccurrence(occurrence)
+				_self.statemachine.queue.add(occurrence)
 			} else {
 				println("Warning: ignoring unrecognized event '" + a + "'")
 			}
 		}
+		_self.statemachine.region.head.initialize
 	}
 
 	@Main
 	def void main() {
-		_self.statemachine.run()
+		_self.statemachine.run
 		println("End of execution")
 	}
 }
 
 @Aspect(className=StateMachine)
 class StateMachineAspect {
-
-	public State currentState
 	public EList<EventOccurrence> queue = new BasicEList<EventOccurrence>
-
-	def void queueEventOccurrence(EventOccurrence eventOccurrence) {
-		_self.queue.add(eventOccurrence)
-	}
 
 	@Step
 	def void run() {
+		for (eventOccurrence : _self.queue) {
+			_self.region.head.handleEvent(eventOccurrence)
+		}
+	}
 
+}
+
+@Aspect(className=Region)
+class RegionAspect {
+
+	public State currentState
+
+	@Step
+	def void initialize() {
 		// Find initial state
-		_self.currentState = _self.region.head.subvertex.filter(Pseudostate).findFirst [
+		_self.currentState = _self.subvertex.filter(Pseudostate).findFirst [
 			it.kind == PseudostateKind::INITIAL
 		]
+		println("Initial state of region \"" + _self.name + "\": " + _self.currentState.name)
+	}
 
-		println("Initial state: " + _self.currentState.name)
-
-		// Empty the event queue into the states
-		for (eventOccurrence : _self.queue) {
-			_self.currentState.handle(eventOccurrence)
-			println("Current state: " + _self.currentState.name)
-		}
+	@Step
+	def void handleEvent(EventOccurrence eventOccurrence) {
+		println("Handling " + eventOccurrence.event.name)
+		_self.currentState.handle(eventOccurrence)
+		println("Current state of region \"" + _self.name + "\": " + _self.currentState.name)
 	}
 
 }
 
 @Aspect(className=State)
 class StateAspect {
+
+	def void setAsCurrent() {
+		_self.container.currentState = _self
+		if (!_self.region.empty) {
+			_self.region.head.initialize
+		}
+	}
+
+	@Step
 	def void handle(EventOccurrence eventOccurrence) {
-		println("Handling occurrence of " + eventOccurrence.event.name)
+		println("Trying in state " + _self.name + " occurrence of " + eventOccurrence.event.name)
 		val outTransitions = _self.container.transition.filter[it.source === _self]
 		val candidate = outTransitions.findFirst[it.trigger.exists[it.event === eventOccurrence.event]] // TODO		
 		if (candidate !== null) {
-			candidate.fire
+			if (_self.region.head !== null)
+				_self.region.head.currentState = null
+			candidate.fire()
+		} else {
+			_self.region.head?.handleEvent(eventOccurrence)
 		}
 	}
 }
@@ -95,9 +118,8 @@ class TransitionAspect {
 	@Step
 	def void fire() {
 		println("Firing " + _self.name)
-		(_self.eContainer.eContainer as StateMachine).currentState = _self.target as State
+		(_self.target as State).setAsCurrent
 	}
-
 }
 
 @Aspect(className=FinalState)

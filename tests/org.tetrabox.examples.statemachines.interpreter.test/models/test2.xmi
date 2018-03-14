@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statemachines:CustomSystem
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:almostuml="almostuml"
+    xmlns:statemachines="statemachines"
+    xsi:schemaLocation="almostuml ../../org.tetrabox.examples.statemachines.abstractsyntax/model/statemachines.ecore#//almostuml statemachines ../../org.tetrabox.examples.statemachines.abstractsyntax/model/statemachines.ecore">
+  <statemachine
+      name="test1">
+    <region
+        name="test1_region">
+      <subvertex
+          xsi:type="almostuml:Pseudostate"
+          name="s1"/>
+      <subvertex
+          xsi:type="almostuml:State"
+          name="s2">
+        <region
+            name="s2_region">
+          <subvertex
+              xsi:type="almostuml:Pseudostate"
+              name="s2_1"/>
+          <subvertex
+              xsi:type="almostuml:FinalState"
+              name="s2_2"/>
+          <transition
+              name="s2_1 to s2_2"
+              source="//@statemachine/@region.0/@subvertex.1/@region.0/@subvertex.0"
+              target="//@statemachine/@region.0/@subvertex.1/@region.0/@subvertex.1">
+            <trigger
+                name="s2_trigger"
+                event="//@events.1"/>
+          </transition>
+        </region>
+      </subvertex>
+      <subvertex
+          xsi:type="almostuml:FinalState"
+          name="s3"/>
+      <transition
+          name="s1 to s2"
+          source="//@statemachine/@region.0/@subvertex.0"
+          target="//@statemachine/@region.0/@subvertex.1">
+        <trigger
+            event="//@events.0"/>
+      </transition>
+      <transition
+          name="s2 to s3"
+          source="//@statemachine/@region.0/@subvertex.1"
+          target="//@statemachine/@region.0/@subvertex.2">
+        <trigger
+            event="//@events.0"/>
+      </transition>
+    </region>
+  </statemachine>
+  <events name="x"/>
+  <events name="y"/>
+</statemachines:CustomSystem>

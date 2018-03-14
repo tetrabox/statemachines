@@ -2,6 +2,8 @@
  */
 package statemachines.almostuml;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +17,7 @@ package statemachines.almostuml;
  *   <li>{@link statemachines.almostuml.State#getEntry <em>Entry</em>}</li>
  *   <li>{@link statemachines.almostuml.State#getExit <em>Exit</em>}</li>
  *   <li>{@link statemachines.almostuml.State#getDoActivity <em>Do Activity</em>}</li>
+ *   <li>{@link statemachines.almostuml.State#getRegion <em>Region</em>}</li>
  * </ul>
  *
  * @see statemachines.almostuml.AlmostumlPackage#getState()
@@ -99,5 +102,21 @@ public interface State extends NamedElement, Vertex {
 	 * @generated
 	 */
 	void setDoActivity(Behavior value);
+
+	/**
+	 * Returns the value of the '<em><b>Region</b></em>' containment reference list.
+	 * The list contents are of type {@link statemachines.almostuml.Region}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Region</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Region</em>' containment reference list.
+	 * @see statemachines.almostuml.AlmostumlPackage#getState_Region()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Region> getRegion();
 
 } // State
