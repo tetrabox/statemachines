@@ -53,6 +53,7 @@ class CustomSystemAspect {
 
 @Aspect(className=StateMachine)
 class StateMachineAspect {
+	
 	public EList<EventOccurrence> queue = new BasicEList<EventOccurrence>
 
 	@Step
@@ -103,8 +104,9 @@ class StateAspect {
 		val outTransitions = _self.container.transition.filter[it.source === _self]
 		val candidate = outTransitions.findFirst[it.trigger.exists[it.event === eventOccurrence.event]] // TODO		
 		if (candidate !== null) {
-			if (_self.region.head !== null)
+			if (_self.region.head !== null) {
 				_self.region.head.currentState = null
+			}
 			candidate.fire()
 		} else {
 			_self.region.head?.handleEvent(eventOccurrence)
