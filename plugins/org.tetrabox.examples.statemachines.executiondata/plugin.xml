@@ -10,7 +10,7 @@
       <!-- @generated statemachinesexecutiondata -->
       <package
             uri="statemachinesexecutiondata"
-            class="statemachinesexecutiondata.StatemachinesexecutiondataPackage"
+            class="execution.statemachines.StatemachinesPackage"
             genModel="model/statemachinesexecutiondata.genmodel"/>
    </extension>
 

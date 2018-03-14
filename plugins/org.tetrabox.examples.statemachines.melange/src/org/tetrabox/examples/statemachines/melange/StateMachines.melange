@@ -11,3 +11,13 @@ language InterpretedStateMachines inherits StateMachines {
 	 with org.tetrabox.examples.statemachines.interpreter.*
 
 }
+
+
+//language CompiledStateMachines inherits StateMachines {
+//
+//	syntax "platform:/resource/org.tetrabox.examples.statemachines.executiondata/model/statemachinesexecutiondata.ecore"
+//	 with org.tetrabox.examples.statemachines.interpreter.*
+//	 	annotation "compiler": "statemachines-compiler"
+//	annotation "feedback": "statemachines-feedback"
+//
+//}

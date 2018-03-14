@@ -15,7 +15,8 @@ class StateMachinesInterpreterTests {
 		val ResourceSet rs = new ResourceSetImpl
 		val resource = rs.getResource(URI::createFileURI("models/test1.xmi"), true)
 		val system = resource.contents.head as CustomSystem
-		system.run(#["x"])
+		system.initialize(#["x"])
+		system.main
 	}
 
 }

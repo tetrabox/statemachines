@@ -534,7 +534,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SF_bw8leEeedwvw676krzQ" x="10"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_SF_bxMleEeedwvw676krzQ" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SF_bxcleEeedwvw676krzQ" x="10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SF_bxcleEeedwvw676krzQ" x="7" y="-42"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_SF-0scleEeedwvw676krzQ" routing="Rectilinear"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_SF-0ssleEeedwvw676krzQ" fontName="Cantarell" fontHeight="8" bold="true"/>
