@@ -19,17 +19,17 @@ class StateMachinesInterpreterTests {
 	}
 
 	@Test
-	def void test1() {
+	def void test1_simplest() {
 		test("models/test1.xmi", "x")
 	}
 
 	@Test
-	def void test2() {
+	def void test2_composite_simple() {
 		test("models/test2.xmi", "x", "y", "x")
 	}
 
 	@Test
-	def void test3() {
+	def void test3_composite_bigger() {
 		test("models/test3.xmi", "e1", "e1", "e3", "e3", "e1", "e1", "e1", "e3", "e1", "e2")
 	}
 
