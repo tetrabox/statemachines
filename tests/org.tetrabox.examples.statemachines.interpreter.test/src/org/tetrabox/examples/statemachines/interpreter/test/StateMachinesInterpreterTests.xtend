@@ -28,4 +28,9 @@ class StateMachinesInterpreterTests {
 		test("models/test2.xmi", "x", "y", "x")
 	}
 
+	@Test
+	def void test3() {
+		test("models/test3.xmi", "e1", "e1", "e3", "e3", "e1", "e1", "e1", "e3", "e1", "e2")
+	}
+
 }

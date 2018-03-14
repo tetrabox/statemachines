@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statemachines:CustomSystem
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:almostuml="almostuml"
+    xmlns:statemachines="statemachines"
+    xsi:schemaLocation="almostuml ../../org.tetrabox.examples.statemachines.abstractsyntax/model/statemachines.ecore#//almostuml statemachines ../../org.tetrabox.examples.statemachines.abstractsyntax/model/statemachines.ecore">
+  <statemachine name="myfsm">
+    <region name="myfsm_region">
+      <subvertex xsi:type="almostuml:Pseudostate" name="s1"/>
+      <subvertex xsi:type="almostuml:State" name="s2"/>
+      <subvertex xsi:type="almostuml:State" name="s3">
+        <region name="s3_region">
+          <subvertex xsi:type="almostuml:Pseudostate" name="s3_1"/>
+          <subvertex xsi:type="almostuml:State" name="s3_2"/>
+          <subvertex xsi:type="almostuml:FinalState" name="s3_3"/>
+          <transition name="s3_1 to s3_2" source="//@statemachine/@region.0/@subvertex.2/@region.0/@subvertex.0" target="//@statemachine/@region.0/@subvertex.2/@region.0/@subvertex.1">
+            <trigger name="" event="//@events.2"/>
+          </transition>
+          <transition name="s3_2 to s3_3" source="//@statemachine/@region.0/@subvertex.2/@region.0/@subvertex.1" target="//@statemachine/@region.0/@subvertex.2/@region.0/@subvertex.2">
+            <trigger name="" event="//@events.2"/>
+          </transition>
+        </region>
+      </subvertex>
+      <subvertex xsi:type="almostuml:State" name="s4"/>
+      <subvertex xsi:type="almostuml:FinalState" name="s5"/>
+      <transition name="s1 to s2" source="//@statemachine/@region.0/@subvertex.0" target="//@statemachine/@region.0/@subvertex.1">
+        <trigger name="t1" event="//@events.0"/>
+      </transition>
+      <transition name="s2 to s3" source="//@statemachine/@region.0/@subvertex.1" target="//@statemachine/@region.0/@subvertex.2">
+        <trigger name="t2" event="//@events.0"/>
+      </transition>
+      <transition name="s3 to s4" source="//@statemachine/@region.0/@subvertex.2" target="//@statemachine/@region.0/@subvertex.3">
+        <trigger name="t3" event="//@events.0"/>
+      </transition>
+      <transition name="s4 to s2" source="//@statemachine/@region.0/@subvertex.3" target="//@statemachine/@region.0/@subvertex.1">
+        <trigger name="t4" event="//@events.0"/>
+      </transition>
+      <transition name="s4 to s5" source="//@statemachine/@region.0/@subvertex.3" target="//@statemachine/@region.0/@subvertex.4">
+        <trigger name="s4 to s5" event="//@events.1"/>
+      </transition>
+    </region>
+  </statemachine>
+  <events name="e1"/>
+  <events name="e2"/>
+  <events name="e3"/>
+</statemachines:CustomSystem>
