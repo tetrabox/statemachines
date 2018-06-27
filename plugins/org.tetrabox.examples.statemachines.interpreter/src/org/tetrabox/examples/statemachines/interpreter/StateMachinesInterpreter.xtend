@@ -24,6 +24,13 @@ import static extension org.tetrabox.examples.statemachines.interpreter.Transiti
 import static extension org.tetrabox.examples.statemachines.interpreter.RegionAspect.*
 import static extension org.tetrabox.examples.statemachines.interpreter.StateMachineAspect.*
 
+
+class Util {
+	static def void log(String l) {
+		//println(l)
+	}
+}
+
 @Aspect(className=CustomSystem)
 class CustomSystemAspect {
 
@@ -38,7 +45,7 @@ class CustomSystemAspect {
 				]
 				_self.statemachine.queue.add(occurrence)
 			} else {
-				println("Warning: ignoring unrecognized event '" + a + "'")
+				Util::log("Warning: ignoring unrecognized event '" + a + "'")
 			}
 		}
 		_self.statemachine.region.head.initialize
@@ -47,7 +54,7 @@ class CustomSystemAspect {
 	@Main
 	def void main() {
 		_self.statemachine.run
-		println("End of execution")
+		Util::log("End of execution")
 	}
 }
 
@@ -76,14 +83,14 @@ class RegionAspect {
 		_self.currentState = _self.subvertex.filter(Pseudostate).findFirst [
 			it.kind == PseudostateKind::INITIAL
 		]
-		println("Initial state of region \"" + _self.name + "\": " + _self.currentState.name)
+		Util::log("Initial state of region \"" + _self.name + "\": " + _self.currentState.name)
 	}
 
 	@Step
 	def void handleEvent(EventOccurrence eventOccurrence) {
-		println("Handling " + eventOccurrence.event.name)
+		Util::log("Handling " + eventOccurrence.event.name)
 		_self.currentState.handle(eventOccurrence)
-		println("Current state of region \"" + _self.name + "\": " + _self.currentState.name)
+		Util::log("Current state of region \"" + _self.name + "\": " + _self.currentState.name)
 	}
 
 }
@@ -100,7 +107,7 @@ class StateAspect {
 
 	@Step
 	def void handle(EventOccurrence eventOccurrence) {
-		println("Trying in state " + _self.name + " occurrence of " + eventOccurrence.event.name)
+		Util::log("Trying in state " + _self.name + " occurrence of " + eventOccurrence.event.name)
 		val outTransitions = _self.container.transition.filter[it.source === _self]
 		val candidate = outTransitions.findFirst[it.trigger.exists[it.event === eventOccurrence.event]] // TODO		
 		if (candidate !== null) {
@@ -119,7 +126,7 @@ class TransitionAspect {
 
 	@Step
 	def void fire() {
-		println("Firing " + _self.name)
+		Util::log("Firing " + _self.name)
 		(_self.target as State).setAsCurrent
 	}
 }
