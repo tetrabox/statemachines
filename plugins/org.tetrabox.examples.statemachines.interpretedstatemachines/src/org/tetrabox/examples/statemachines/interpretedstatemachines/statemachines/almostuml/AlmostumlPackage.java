@@ -113,22 +113,13 @@ public interface AlmostumlPackage extends EPackage {
 	int STATE_MACHINE__REGION = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Current State</b></em>' reference.
+	 * The feature id for the '<em><b>Queue</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE__CURRENT_STATE = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Queue</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__QUEUE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int STATE_MACHINE__QUEUE = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>State Machine</em>' class.
@@ -137,7 +128,7 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int STATE_MACHINE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.impl.RegionImpl <em>Region</em>}' class.
@@ -150,13 +141,22 @@ public interface AlmostumlPackage extends EPackage {
 	int REGION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Subvertex</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REGION__SUBVERTEX = 0;
+	int REGION__SUBVERTEX = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Transition</b></em>' containment reference list.
@@ -165,7 +165,7 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION__TRANSITION = 1;
+	int REGION__TRANSITION = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
@@ -174,7 +174,16 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION__STATE_MACHINE = 2;
+	int REGION__STATE_MACHINE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Current State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION__CURRENT_STATE = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Region</em>' class.
@@ -183,7 +192,7 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION_FEATURE_COUNT = 3;
+	int REGION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.impl.StateImpl <em>State</em>}' class.
@@ -241,13 +250,22 @@ public interface AlmostumlPackage extends EPackage {
 	int STATE__DO_ACTIVITY = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Region</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__REGION = NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int STATE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.impl.VertexImpl <em>Vertex</em>}' class.
@@ -527,6 +545,15 @@ public interface AlmostumlPackage extends EPackage {
 	int FINAL_STATE__DO_ACTIVITY = STATE__DO_ACTIVITY;
 
 	/**
+	 * The feature id for the '<em><b>Region</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_STATE__REGION = STATE__REGION;
+
+	/**
 	 * The number of structural features of the '<em>Final State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -591,6 +618,15 @@ public interface AlmostumlPackage extends EPackage {
 	int PSEUDOSTATE__DO_ACTIVITY = STATE__DO_ACTIVITY;
 
 	/**
+	 * The feature id for the '<em><b>Region</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PSEUDOSTATE__REGION = STATE__REGION;
+
+	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -641,21 +677,10 @@ public interface AlmostumlPackage extends EPackage {
 	EReference getStateMachine_Region();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.StateMachine#getCurrentState <em>Current State</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.StateMachine#getQueue <em>Queue</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Current State</em>'.
-	 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.StateMachine#getCurrentState()
-	 * @see #getStateMachine()
-	 * @generated
-	 */
-	EReference getStateMachine_CurrentState();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.StateMachine#getQueue <em>Queue</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Queue</em>'.
+	 * @return the meta object for the containment reference list '<em>Queue</em>'.
 	 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.StateMachine#getQueue()
 	 * @see #getStateMachine()
 	 * @generated
@@ -706,6 +731,17 @@ public interface AlmostumlPackage extends EPackage {
 	EReference getRegion_StateMachine();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Region#getCurrentState <em>Current State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Current State</em>'.
+	 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Region#getCurrentState()
+	 * @see #getRegion()
+	 * @generated
+	 */
+	EReference getRegion_CurrentState();
+
+	/**
 	 * Returns the meta object for class '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -747,6 +783,17 @@ public interface AlmostumlPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getState_DoActivity();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.State#getRegion <em>Region</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Region</em>'.
+	 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.State#getRegion()
+	 * @see #getState()
+	 * @generated
+	 */
+	EReference getState_Region();
 
 	/**
 	 * Returns the meta object for class '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Vertex <em>Vertex</em>}'.
@@ -988,15 +1035,7 @@ public interface AlmostumlPackage extends EPackage {
 		EReference STATE_MACHINE__REGION = eINSTANCE.getStateMachine_Region();
 
 		/**
-		 * The meta object literal for the '<em><b>Current State</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATE_MACHINE__CURRENT_STATE = eINSTANCE.getStateMachine_CurrentState();
-
-		/**
-		 * The meta object literal for the '<em><b>Queue</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Queue</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1038,6 +1077,14 @@ public interface AlmostumlPackage extends EPackage {
 		EReference REGION__STATE_MACHINE = eINSTANCE.getRegion_StateMachine();
 
 		/**
+		 * The meta object literal for the '<em><b>Current State</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REGION__CURRENT_STATE = eINSTANCE.getRegion_CurrentState();
+
+		/**
 		 * The meta object literal for the '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.impl.StateImpl <em>State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1070,6 +1117,14 @@ public interface AlmostumlPackage extends EPackage {
 		 * @generated
 		 */
 		EReference STATE__DO_ACTIVITY = eINSTANCE.getState_DoActivity();
+
+		/**
+		 * The meta object literal for the '<em><b>Region</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE__REGION = eINSTANCE.getState_Region();
 
 		/**
 		 * The meta object literal for the '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.impl.VertexImpl <em>Vertex</em>}' class.

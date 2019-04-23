@@ -83,6 +83,10 @@ public class StatemachinesAdapterFactory extends AdapterFactoryImpl {
 				return createEventOccurrenceAdapter();
 			}
 			@Override
+			public Adapter caseUtil(Util object) {
+				return createUtilAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -149,6 +153,20 @@ public class StatemachinesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventOccurrenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.Util <em>Util</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.Util
+	 * @generated
+	 */
+	public Adapter createUtilAdapter() {
 		return null;
 	}
 

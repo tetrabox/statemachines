@@ -16,7 +16,6 @@ import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachine
  * </p>
  * <ul>
  *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.StateMachine#getRegion <em>Region</em>}</li>
- *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.StateMachine#getCurrentState <em>Current State</em>}</li>
  *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.StateMachine#getQueue <em>Queue</em>}</li>
  * </ul>
  *
@@ -44,54 +43,20 @@ public interface StateMachine extends NamedElement {
 	EList<Region> getRegion();
 
 	/**
-	 * Returns the value of the '<em><b>Current State</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Current State</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Current State</em>' reference.
-	 * @see #setCurrentState(State)
-	 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.AlmostumlPackage#getStateMachine_CurrentState()
-	 * @model
-	 * @generated
-	 */
-	State getCurrentState();
-
-	/**
-	 * Sets the value of the '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.StateMachine#getCurrentState <em>Current State</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Current State</em>' reference.
-	 * @see #getCurrentState()
-	 * @generated
-	 */
-	void setCurrentState(State value);
-
-	/**
-	 * Returns the value of the '<em><b>Queue</b></em>' reference list.
+	 * Returns the value of the '<em><b>Queue</b></em>' containment reference list.
 	 * The list contents are of type {@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.EventOccurrence}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Queue</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Queue</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Queue</em>' reference list.
+	 * @return the value of the '<em>Queue</em>' containment reference list.
 	 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.AlmostumlPackage#getStateMachine_Queue()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<EventOccurrence> getQueue();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void queueEventOccurrence(EventOccurrence eventOccurrence);
 
 	/**
 	 * <!-- begin-user-doc -->

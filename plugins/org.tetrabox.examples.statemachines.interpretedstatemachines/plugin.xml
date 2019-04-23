@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
-
 <plugin>
-
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated InterpretedStateMachines -->
-      <package
-            uri="http://org.tetrabox.examples.statemachines.interpretedstatemachines/statemachines/"
-            class="org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.StatemachinesPackage"
-            genModel="model/InterpretedStateMachines.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated InterpretedStateMachines -->
-      <package
-            uri="http://org.tetrabox.examples.statemachines.interpretedstatemachines/statemachines/almostuml/"
-            class="org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.AlmostumlPackage"
-            genModel="model/InterpretedStateMachines.genmodel"/>
-   </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <!-- @generated InterpretedStateMachines -->
+    <package uri="http://org.tetrabox.examples.statemachines.interpretedstatemachines/statemachines/" class="org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.StatemachinesPackage" genModel="model/InterpretedStateMachines.genmodel" />
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <!-- @generated InterpretedStateMachines -->
+    <package uri="http://org.tetrabox.examples.statemachines.interpretedstatemachines/statemachines/almostuml/" class="org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.AlmostumlPackage" genModel="model/InterpretedStateMachines.genmodel" />
+  </extension>
+  <extension point="org.eclipse.gemoc.gemoc_language_workbench.sequential.xdsml">
+    <XDSML_Definition name="org.tetrabox.examples.statemachines.InterpretedStateMachines" xdsmlFilePath="platform:/plugin/org.tetrabox.examples.statemachines.interpretedstatemachines/InterpretedStateMachines.dsl" modelLoader_class="org.eclipse.gemoc.executionframework.extensions.sirius.modelloader.DefaultModelLoader" />
+  </extension>
 </plugin>

@@ -30,6 +30,15 @@
         <ecoreFeature xsi:type="ecore:EReference" href="InterpretedStateMachines.ecore#//EventOccurrence/event"/>
       </genFeatures>
     </genClasses>
+    <genClasses>
+      <ecoreClass href="InterpretedStateMachines.ecore#//Util"/>
+      <genOperations>
+        <ecoreOperation href="InterpretedStateMachines.ecore#//Util/log"/>
+        <genParameters>
+          <ecoreParameter href="InterpretedStateMachines.ecore#//Util/log/l"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
     <nestedGenPackages prefix="Almostuml" disposableProviderFactory="true">
       <ecorePackage href="InterpretedStateMachines.ecore#//almostuml"/>
       <genEnums typeSafeEnumCompatible="false">
@@ -55,18 +64,9 @@
         <genFeatures property="None" children="true" createChild="true">
           <ecoreFeature xsi:type="ecore:EReference" href="InterpretedStateMachines.ecore#//almostuml/StateMachine/region"/>
         </genFeatures>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true">
-          <ecoreFeature xsi:type="ecore:EReference" href="InterpretedStateMachines.ecore#//almostuml/StateMachine/currentState"/>
-        </genFeatures>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <genFeatures property="None" children="true" createChild="true">
           <ecoreFeature xsi:type="ecore:EReference" href="InterpretedStateMachines.ecore#//almostuml/StateMachine/queue"/>
         </genFeatures>
-        <genOperations>
-          <ecoreOperation href="InterpretedStateMachines.ecore#//almostuml/StateMachine/queueEventOccurrence"/>
-          <genParameters>
-            <ecoreParameter href="InterpretedStateMachines.ecore#//almostuml/StateMachine/queueEventOccurrence/eventOccurrence"/>
-          </genParameters>
-        </genOperations>
         <genOperations>
           <ecoreOperation href="InterpretedStateMachines.ecore#//almostuml/StateMachine/run"/>
         </genOperations>
@@ -82,6 +82,18 @@
         <genFeatures property="None" notify="false" createChild="false">
           <ecoreFeature xsi:type="ecore:EReference" href="InterpretedStateMachines.ecore#//almostuml/Region/stateMachine"/>
         </genFeatures>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true">
+          <ecoreFeature xsi:type="ecore:EReference" href="InterpretedStateMachines.ecore#//almostuml/Region/currentState"/>
+        </genFeatures>
+        <genOperations>
+          <ecoreOperation href="InterpretedStateMachines.ecore#//almostuml/Region/initialize"/>
+        </genOperations>
+        <genOperations>
+          <ecoreOperation href="InterpretedStateMachines.ecore#//almostuml/Region/handleEvent"/>
+          <genParameters>
+            <ecoreParameter href="InterpretedStateMachines.ecore#//almostuml/Region/handleEvent/eventOccurrence"/>
+          </genParameters>
+        </genOperations>
       </genClasses>
       <genClasses>
         <ecoreClass href="InterpretedStateMachines.ecore#//almostuml/State"/>
@@ -94,6 +106,12 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true">
           <ecoreFeature xsi:type="ecore:EReference" href="InterpretedStateMachines.ecore#//almostuml/State/doActivity"/>
         </genFeatures>
+        <genFeatures property="None" children="true" createChild="true">
+          <ecoreFeature xsi:type="ecore:EReference" href="InterpretedStateMachines.ecore#//almostuml/State/region"/>
+        </genFeatures>
+        <genOperations>
+          <ecoreOperation href="InterpretedStateMachines.ecore#//almostuml/State/setAsCurrent"/>
+        </genOperations>
         <genOperations>
           <ecoreOperation href="InterpretedStateMachines.ecore#//almostuml/State/handle"/>
           <genParameters>

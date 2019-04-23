@@ -178,6 +178,30 @@ public class StatemachinesPackageImpl extends EPackageImpl implements Statemachi
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// aspect
+		createAspectAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>aspect</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createAspectAnnotations() {
+		String source = "aspect";	
+		addAnnotation
+		  (eventOccurrenceEClass, 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (getEventOccurrence_Event(), 
+		   source, 
+		   new String[] {
+		   });
 	}
 
 } //StatemachinesPackageImpl

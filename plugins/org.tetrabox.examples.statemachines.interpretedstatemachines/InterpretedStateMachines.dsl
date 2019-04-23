@@ -1,0 +1,5 @@
+name = org.tetrabox.examples.statemachines.InterpretedStateMachines
+
+ ecore = platform:/resource/org.tetrabox.examples.statemachines.interpretedstatemachines/model/InterpretedStateMachines.ecore
+
+ k3 = org.tetrabox.examples.statemachines.interpretedstatemachines.aspects.CustomSystemAspect,org.tetrabox.examples.statemachines.interpretedstatemachines.aspects.StateMachineAspect,org.tetrabox.examples.statemachines.interpretedstatemachines.aspects.StateAspect,org.tetrabox.examples.statemachines.interpretedstatemachines.aspects.Util,org.tetrabox.examples.statemachines.interpretedstatemachines.aspects.FinalStateAspect,org.tetrabox.examples.statemachines.interpretedstatemachines.aspects.TransitionAspect,org.tetrabox.examples.statemachines.interpretedstatemachines.aspects.RegionAspect

@@ -4,7 +4,7 @@ package org.tetrabox.examples.statemachines.interpretedstatemachines.statemachin
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
+import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.EventOccurrence;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,13 +18,14 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Region#getSubvertex <em>Subvertex</em>}</li>
  *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Region#getTransition <em>Transition</em>}</li>
  *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Region#getStateMachine <em>State Machine</em>}</li>
+ *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Region#getCurrentState <em>Current State</em>}</li>
  * </ul>
  *
  * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.AlmostumlPackage#getRegion()
  * @model
  * @generated
  */
-public interface Region extends EObject {
+public interface Region extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Subvertex</b></em>' containment reference list.
 	 * The list contents are of type {@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Vertex}.
@@ -86,5 +87,47 @@ public interface Region extends EObject {
 	 * @generated
 	 */
 	void setStateMachine(StateMachine value);
+
+	/**
+	 * Returns the value of the '<em><b>Current State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Current State</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Current State</em>' reference.
+	 * @see #setCurrentState(State)
+	 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.AlmostumlPackage#getRegion_CurrentState()
+	 * @model
+	 * @generated
+	 */
+	State getCurrentState();
+
+	/**
+	 * Sets the value of the '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Region#getCurrentState <em>Current State</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Current State</em>' reference.
+	 * @see #getCurrentState()
+	 * @generated
+	 */
+	void setCurrentState(State value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void initialize();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void handleEvent(EventOccurrence eventOccurrence);
 
 } // Region

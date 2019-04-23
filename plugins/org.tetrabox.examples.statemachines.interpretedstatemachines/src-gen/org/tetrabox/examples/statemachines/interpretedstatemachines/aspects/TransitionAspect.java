@@ -2,12 +2,10 @@ package org.tetrabox.examples.statemachines.interpretedstatemachines.aspects;
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
 import fr.inria.diverse.k3.al.annotationprocessor.Step;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.tetrabox.examples.statemachines.interpretedstatemachines.aspects.StateMachineAspect;
+import org.tetrabox.examples.statemachines.interpretedstatemachines.aspects.StateAspect;
 import org.tetrabox.examples.statemachines.interpretedstatemachines.aspects.TransitionAspectTransitionAspectProperties;
+import org.tetrabox.examples.statemachines.interpretedstatemachines.aspects.Util;
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.State;
-import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.StateMachine;
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Transition;
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Vertex;
 
@@ -38,9 +36,8 @@ public class TransitionAspect {
   protected static void _privk3_fire(final TransitionAspectTransitionAspectProperties _self_, final Transition _self) {
     String _name = _self.getName();
     String _plus = ("Firing " + _name);
-    InputOutput.<String>println(_plus);
-    EObject _eContainer = _self.eContainer().eContainer();
+    Util.log(_plus);
     Vertex _target = _self.getTarget();
-    StateMachineAspect.currentState(((StateMachine) _eContainer), ((State) _target));
+    StateAspect.setAsCurrent(((State) _target));
   }
 }

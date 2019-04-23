@@ -59,6 +59,7 @@ public class StatemachinesFactoryImpl extends EFactoryImpl implements Statemachi
 			case StatemachinesPackage.CUSTOM_SYSTEM: return createCustomSystem();
 			case StatemachinesPackage.CUSTOM_EVENT: return createCustomEvent();
 			case StatemachinesPackage.EVENT_OCCURRENCE: return createEventOccurrence();
+			case StatemachinesPackage.UTIL: return createUtil();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -92,6 +93,16 @@ public class StatemachinesFactoryImpl extends EFactoryImpl implements Statemachi
 	public EventOccurrence createEventOccurrence() {
 		EventOccurrenceImpl eventOccurrence = new EventOccurrenceImpl();
 		return eventOccurrence;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Util createUtil() {
+		UtilImpl util = new UtilImpl();
+		return util;
 	}
 
 	/**

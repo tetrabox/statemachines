@@ -18,12 +18,12 @@ import statemachines.almostuml.Region
 import statemachines.almostuml.State
 import statemachines.almostuml.StateMachine
 import statemachines.almostuml.Transition
+import fr.inria.diverse.melange.annotation.Containment
 
 import static extension org.tetrabox.examples.statemachines.interpreter.StateAspect.*
 import static extension org.tetrabox.examples.statemachines.interpreter.TransitionAspect.*
 import static extension org.tetrabox.examples.statemachines.interpreter.RegionAspect.*
 import static extension org.tetrabox.examples.statemachines.interpreter.StateMachineAspect.*
-
 
 class Util {
 	static def void log(String l) {
@@ -35,6 +35,7 @@ class Util {
 class CustomSystemAspect {
 
 	@InitializeModel
+	@Step
 	def void initialize(List<String> args) {
 		// Transform entered strings into a queue of event occurrences
 		for (a : args.filter[!it.isNullOrEmpty]) {
@@ -61,15 +62,16 @@ class CustomSystemAspect {
 @Aspect(className=StateMachine)
 class StateMachineAspect {
 	
+	@Containment
 	public EList<EventOccurrence> queue = new BasicEList<EventOccurrence>
 
 	@Step
 	def void run() {
-		for (eventOccurrence : _self.queue) {
+		for (eventOccurrence : _self.queue.immutableCopy) {
+			_self.queue.remove(eventOccurrence)
 			_self.region.head.handleEvent(eventOccurrence)
 		}
 	}
-
 }
 
 @Aspect(className=Region)
@@ -77,7 +79,6 @@ class RegionAspect {
 
 	public State currentState
 
-	@Step
 	def void initialize() {
 		// Find initial state
 		_self.currentState = _self.subvertex.filter(Pseudostate).findFirst [
@@ -86,7 +87,6 @@ class RegionAspect {
 		Util::log("Initial state of region \"" + _self.name + "\": " + _self.currentState.name)
 	}
 
-	@Step
 	def void handleEvent(EventOccurrence eventOccurrence) {
 		Util::log("Handling " + eventOccurrence.event.name)
 		_self.currentState.handle(eventOccurrence)
@@ -109,15 +109,18 @@ class StateAspect {
 	def void handle(EventOccurrence eventOccurrence) {
 		Util::log("Trying in state " + _self.name + " occurrence of " + eventOccurrence.event.name)
 		val outTransitions = _self.container.transition.filter[it.source === _self]
-		val candidate = outTransitions.findFirst[it.trigger.exists[it.event === eventOccurrence.event]] // TODO		
-		if (candidate !== null) {
+		val candidates = outTransitions.filter[it.trigger.exists[it.event === eventOccurrence.event]]
+		if (candidates.size > 1) {
+			throw new Exception("The state machine is not deterministic!")
+		} else if (!candidates.empty) {
 			if (_self.region.head !== null) {
 				_self.region.head.currentState = null
 			}
-			candidate.fire()
+			candidates.get(0).fire()
 		} else {
 			_self.region.head?.handleEvent(eventOccurrence)
 		}
+
 	}
 }
 

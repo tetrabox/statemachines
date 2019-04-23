@@ -14,6 +14,7 @@ import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachine
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.EventOccurrence;
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.StatemachinesFactory;
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.StatemachinesPackage;
+import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.Util;
 
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.AlmostumlPackage;
 
@@ -48,6 +49,13 @@ public class StatemachinesPackageImpl extends EPackageImpl implements Statemachi
 	private EClass eventOccurrenceEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass utilEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -75,7 +83,7 @@ public class StatemachinesPackageImpl extends EPackageImpl implements Statemachi
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link StatemachinesPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -89,12 +97,14 @@ public class StatemachinesPackageImpl extends EPackageImpl implements Statemachi
 		if (isInited) return (StatemachinesPackage)EPackage.Registry.INSTANCE.getEPackage(StatemachinesPackage.eNS_URI);
 
 		// Obtain or create and register package
-		StatemachinesPackageImpl theStatemachinesPackage = (StatemachinesPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StatemachinesPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new StatemachinesPackageImpl());
+		Object registeredStatemachinesPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		StatemachinesPackageImpl theStatemachinesPackage = registeredStatemachinesPackage instanceof StatemachinesPackageImpl ? (StatemachinesPackageImpl)registeredStatemachinesPackage : new StatemachinesPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		AlmostumlPackageImpl theAlmostumlPackage = (AlmostumlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AlmostumlPackage.eNS_URI) instanceof AlmostumlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AlmostumlPackage.eNS_URI) : AlmostumlPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(AlmostumlPackage.eNS_URI);
+		AlmostumlPackageImpl theAlmostumlPackage = (AlmostumlPackageImpl)(registeredPackage instanceof AlmostumlPackageImpl ? registeredPackage : AlmostumlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theStatemachinesPackage.createPackageContents();
@@ -107,7 +117,6 @@ public class StatemachinesPackageImpl extends EPackageImpl implements Statemachi
 		// Mark meta-data to indicate it can't be changed
 		theStatemachinesPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(StatemachinesPackage.eNS_URI, theStatemachinesPackage);
 		return theStatemachinesPackage;
@@ -172,6 +181,15 @@ public class StatemachinesPackageImpl extends EPackageImpl implements Statemachi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getUtil() {
+		return utilEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StatemachinesFactory getStatemachinesFactory() {
 		return (StatemachinesFactory)getEFactoryInstance();
 	}
@@ -203,6 +221,8 @@ public class StatemachinesPackageImpl extends EPackageImpl implements Statemachi
 
 		eventOccurrenceEClass = createEClass(EVENT_OCCURRENCE);
 		createEReference(eventOccurrenceEClass, EVENT_OCCURRENCE__EVENT);
+
+		utilEClass = createEClass(UTIL);
 	}
 
 	/**
@@ -256,6 +276,11 @@ public class StatemachinesPackageImpl extends EPackageImpl implements Statemachi
 		initEClass(eventOccurrenceEClass, EventOccurrence.class, "EventOccurrence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEventOccurrence_Event(), this.getCustomEvent(), null, "event", null, 1, 1, EventOccurrence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(utilEClass, Util.class, "Util", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = addEOperation(utilEClass, null, "log", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "l", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		// Create resource
 		createResource(eNS_URI);
 
@@ -271,15 +296,35 @@ public class StatemachinesPackageImpl extends EPackageImpl implements Statemachi
 	 * @generated
 	 */
 	protected void createAspectAnnotations() {
-		String source = "aspect";	
+		String source = "aspect";
 		addAnnotation
-		  (customSystemEClass.getEOperations().get(0), 
-		   source, 
+		  (customSystemEClass.getEOperations().get(0),
+		   source,
 		   new String[] {
-		   });	
+		   });
 		addAnnotation
-		  (customSystemEClass.getEOperations().get(1), 
-		   source, 
+		  (customSystemEClass.getEOperations().get(1),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (eventOccurrenceEClass,
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getEventOccurrence_Event(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (utilEClass,
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (utilEClass.getEOperations().get(0),
+		   source,
 		   new String[] {
 		   });
 	}

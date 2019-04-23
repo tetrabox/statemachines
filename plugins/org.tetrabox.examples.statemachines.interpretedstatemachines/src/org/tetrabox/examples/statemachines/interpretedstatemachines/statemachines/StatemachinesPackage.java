@@ -149,6 +149,25 @@ public interface StatemachinesPackage extends EPackage {
 	 */
 	int EVENT_OCCURRENCE_FEATURE_COUNT = 1;
 
+	/**
+	 * The meta object id for the '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.impl.UtilImpl <em>Util</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.impl.UtilImpl
+	 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.impl.StatemachinesPackageImpl#getUtil()
+	 * @generated
+	 */
+	int UTIL = 3;
+
+	/**
+	 * The number of structural features of the '<em>Util</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UTIL_FEATURE_COUNT = 0;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.CustomSystem <em>Custom System</em>}'.
@@ -212,6 +231,16 @@ public interface StatemachinesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEventOccurrence_Event();
+
+	/**
+	 * Returns the meta object for class '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.Util <em>Util</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Util</em>'.
+	 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.Util
+	 * @generated
+	 */
+	EClass getUtil();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -288,6 +317,16 @@ public interface StatemachinesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EVENT_OCCURRENCE__EVENT = eINSTANCE.getEventOccurrence_Event();
+
+		/**
+		 * The meta object literal for the '{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.impl.UtilImpl <em>Util</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.impl.UtilImpl
+		 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.impl.StatemachinesPackageImpl#getUtil()
+		 * @generated
+		 */
+		EClass UTIL = eINSTANCE.getUtil();
 
 	}
 

@@ -157,7 +157,7 @@ public class AlmostumlPackageImpl extends EPackageImpl implements AlmostumlPacka
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link AlmostumlPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -171,12 +171,14 @@ public class AlmostumlPackageImpl extends EPackageImpl implements AlmostumlPacka
 		if (isInited) return (AlmostumlPackage)EPackage.Registry.INSTANCE.getEPackage(AlmostumlPackage.eNS_URI);
 
 		// Obtain or create and register package
-		AlmostumlPackageImpl theAlmostumlPackage = (AlmostumlPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof AlmostumlPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new AlmostumlPackageImpl());
+		Object registeredAlmostumlPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		AlmostumlPackageImpl theAlmostumlPackage = registeredAlmostumlPackage instanceof AlmostumlPackageImpl ? (AlmostumlPackageImpl)registeredAlmostumlPackage : new AlmostumlPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		StatemachinesPackageImpl theStatemachinesPackage = (StatemachinesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StatemachinesPackage.eNS_URI) instanceof StatemachinesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StatemachinesPackage.eNS_URI) : StatemachinesPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StatemachinesPackage.eNS_URI);
+		StatemachinesPackageImpl theStatemachinesPackage = (StatemachinesPackageImpl)(registeredPackage instanceof StatemachinesPackageImpl ? registeredPackage : StatemachinesPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theAlmostumlPackage.createPackageContents();
@@ -189,7 +191,6 @@ public class AlmostumlPackageImpl extends EPackageImpl implements AlmostumlPacka
 		// Mark meta-data to indicate it can't be changed
 		theAlmostumlPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(AlmostumlPackage.eNS_URI, theAlmostumlPackage);
 		return theAlmostumlPackage;
@@ -218,17 +219,8 @@ public class AlmostumlPackageImpl extends EPackageImpl implements AlmostumlPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStateMachine_CurrentState() {
-		return (EReference)stateMachineEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getStateMachine_Queue() {
-		return (EReference)stateMachineEClass.getEStructuralFeatures().get(2);
+		return (EReference)stateMachineEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -272,6 +264,15 @@ public class AlmostumlPackageImpl extends EPackageImpl implements AlmostumlPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getRegion_CurrentState() {
+		return (EReference)regionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getState() {
 		return stateEClass;
 	}
@@ -301,6 +302,15 @@ public class AlmostumlPackageImpl extends EPackageImpl implements AlmostumlPacka
 	 */
 	public EReference getState_DoActivity() {
 		return (EReference)stateEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getState_Region() {
+		return (EReference)stateEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -504,18 +514,19 @@ public class AlmostumlPackageImpl extends EPackageImpl implements AlmostumlPacka
 		// Create classes and their features
 		stateMachineEClass = createEClass(STATE_MACHINE);
 		createEReference(stateMachineEClass, STATE_MACHINE__REGION);
-		createEReference(stateMachineEClass, STATE_MACHINE__CURRENT_STATE);
 		createEReference(stateMachineEClass, STATE_MACHINE__QUEUE);
 
 		regionEClass = createEClass(REGION);
 		createEReference(regionEClass, REGION__SUBVERTEX);
 		createEReference(regionEClass, REGION__TRANSITION);
 		createEReference(regionEClass, REGION__STATE_MACHINE);
+		createEReference(regionEClass, REGION__CURRENT_STATE);
 
 		stateEClass = createEClass(STATE);
 		createEReference(stateEClass, STATE__ENTRY);
 		createEReference(stateEClass, STATE__EXIT);
 		createEReference(stateEClass, STATE__DO_ACTIVITY);
+		createEReference(stateEClass, STATE__REGION);
 
 		vertexEClass = createEClass(VERTEX);
 		createEReference(vertexEClass, VERTEX__CONTAINER);
@@ -580,6 +591,7 @@ public class AlmostumlPackageImpl extends EPackageImpl implements AlmostumlPacka
 
 		// Add supertypes to classes
 		stateMachineEClass.getESuperTypes().add(this.getNamedElement());
+		regionEClass.getESuperTypes().add(this.getNamedElement());
 		stateEClass.getESuperTypes().add(this.getNamedElement());
 		stateEClass.getESuperTypes().add(this.getVertex());
 		vertexEClass.getESuperTypes().add(this.getNamedElement());
@@ -593,11 +605,7 @@ public class AlmostumlPackageImpl extends EPackageImpl implements AlmostumlPacka
 		// Initialize classes and features; add operations and parameters
 		initEClass(stateMachineEClass, StateMachine.class, "StateMachine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStateMachine_Region(), this.getRegion(), this.getRegion_StateMachine(), "region", null, 1, -1, StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStateMachine_CurrentState(), this.getState(), null, "currentState", null, 0, 1, StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStateMachine_Queue(), theStatemachinesPackage.getEventOccurrence(), null, "queue", null, 0, -1, StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		EOperation op = addEOperation(stateMachineEClass, null, "queueEventOccurrence", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theStatemachinesPackage.getEventOccurrence(), "eventOccurrence", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEReference(getStateMachine_Queue(), theStatemachinesPackage.getEventOccurrence(), null, "queue", null, 0, -1, StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(stateMachineEClass, null, "run", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -605,11 +613,20 @@ public class AlmostumlPackageImpl extends EPackageImpl implements AlmostumlPacka
 		initEReference(getRegion_Subvertex(), this.getVertex(), this.getVertex_Container(), "subvertex", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRegion_Transition(), this.getTransition(), null, "transition", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRegion_StateMachine(), this.getStateMachine(), this.getStateMachine_Region(), "stateMachine", null, 0, 1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRegion_CurrentState(), this.getState(), null, "currentState", null, 0, 1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(regionEClass, null, "initialize", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		EOperation op = addEOperation(regionEClass, null, "handleEvent", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theStatemachinesPackage.getEventOccurrence(), "eventOccurrence", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getState_Entry(), this.getBehavior(), null, "entry", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getState_Exit(), this.getBehavior(), null, "exit", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getState_DoActivity(), this.getBehavior(), null, "doActivity", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getState_Region(), this.getRegion(), null, "region", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(stateEClass, null, "setAsCurrent", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(stateEClass, null, "handle", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theStatemachinesPackage.getEventOccurrence(), "eventOccurrence", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -666,40 +683,50 @@ public class AlmostumlPackageImpl extends EPackageImpl implements AlmostumlPacka
 	 * @generated
 	 */
 	protected void createAspectAnnotations() {
-		String source = "aspect";	
+		String source = "aspect";
 		addAnnotation
-		  (stateMachineEClass.getEOperations().get(0), 
-		   source, 
+		  (stateMachineEClass.getEOperations().get(0),
+		   source,
 		   new String[] {
-		   });	
+		   });
 		addAnnotation
-		  (stateMachineEClass.getEOperations().get(1), 
-		   source, 
+		  (getStateMachine_Queue(),
+		   source,
 		   new String[] {
-		   });	
+		   });
 		addAnnotation
-		  (getStateMachine_CurrentState(), 
-		   source, 
+		  (regionEClass.getEOperations().get(0),
+		   source,
 		   new String[] {
-		   });	
+		   });
 		addAnnotation
-		  (getStateMachine_Queue(), 
-		   source, 
+		  (regionEClass.getEOperations().get(1),
+		   source,
 		   new String[] {
-		   });	
+		   });
 		addAnnotation
-		  (stateEClass.getEOperations().get(0), 
-		   source, 
+		  (getRegion_CurrentState(),
+		   source,
 		   new String[] {
-		   });	
+		   });
 		addAnnotation
-		  (transitionEClass.getEOperations().get(0), 
-		   source, 
+		  (stateEClass.getEOperations().get(0),
+		   source,
 		   new String[] {
-		   });	
+		   });
 		addAnnotation
-		  (finalStateEClass.getEOperations().get(0), 
-		   source, 
+		  (stateEClass.getEOperations().get(1),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (transitionEClass.getEOperations().get(0),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (finalStateEClass.getEOperations().get(0),
+		   source,
 		   new String[] {
 		   });
 	}

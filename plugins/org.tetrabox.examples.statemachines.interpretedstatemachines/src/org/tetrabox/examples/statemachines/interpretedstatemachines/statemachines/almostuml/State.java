@@ -2,6 +2,8 @@
  */
 package org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.EventOccurrence;
 
 /**
@@ -16,6 +18,7 @@ import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachine
  *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.State#getEntry <em>Entry</em>}</li>
  *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.State#getExit <em>Exit</em>}</li>
  *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.State#getDoActivity <em>Do Activity</em>}</li>
+ *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.State#getRegion <em>Region</em>}</li>
  * </ul>
  *
  * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.AlmostumlPackage#getState()
@@ -100,6 +103,30 @@ public interface State extends NamedElement, Vertex {
 	 * @generated
 	 */
 	void setDoActivity(Behavior value);
+
+	/**
+	 * Returns the value of the '<em><b>Region</b></em>' containment reference list.
+	 * The list contents are of type {@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Region}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Region</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Region</em>' containment reference list.
+	 * @see org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.AlmostumlPackage#getState_Region()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Region> getRegion();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void setAsCurrent();
 
 	/**
 	 * <!-- begin-user-doc -->

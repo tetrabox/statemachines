@@ -13,15 +13,17 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.EventOccurrence;
+
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.AlmostumlPackage;
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Region;
+import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.State;
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.StateMachine;
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Transition;
 import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.Vertex;
@@ -37,11 +39,12 @@ import org.tetrabox.examples.statemachines.interpretedstatemachines.statemachine
  *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.impl.RegionImpl#getSubvertex <em>Subvertex</em>}</li>
  *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.impl.RegionImpl#getTransition <em>Transition</em>}</li>
  *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.impl.RegionImpl#getStateMachine <em>State Machine</em>}</li>
+ *   <li>{@link org.tetrabox.examples.statemachines.interpretedstatemachines.statemachines.almostuml.impl.RegionImpl#getCurrentState <em>Current State</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RegionImpl extends EObjectImpl implements Region {
+public class RegionImpl extends NamedElementImpl implements Region {
 	/**
 	 * The cached value of the '{@link #getSubvertex() <em>Subvertex</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -61,6 +64,16 @@ public class RegionImpl extends EObjectImpl implements Region {
 	 * @ordered
 	 */
 	protected EList<Transition> transition;
+
+	/**
+	 * The cached value of the '{@link #getCurrentState() <em>Current State</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCurrentState()
+	 * @generated
+	 * @ordered
+	 */
+	protected State currentState;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -151,6 +164,66 @@ public class RegionImpl extends EObjectImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public State getCurrentState() {
+		if (currentState != null && currentState.eIsProxy()) {
+			InternalEObject oldCurrentState = (InternalEObject)currentState;
+			currentState = (State)eResolveProxy(oldCurrentState);
+			if (currentState != oldCurrentState) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AlmostumlPackage.REGION__CURRENT_STATE, oldCurrentState, currentState));
+			}
+		}
+		return currentState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public State basicGetCurrentState() {
+		return currentState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCurrentState(State newCurrentState) {
+		State oldCurrentState = currentState;
+		currentState = newCurrentState;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AlmostumlPackage.REGION__CURRENT_STATE, oldCurrentState, currentState));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void initialize() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void handleEvent(EventOccurrence eventOccurrence) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -211,6 +284,9 @@ public class RegionImpl extends EObjectImpl implements Region {
 				return getTransition();
 			case AlmostumlPackage.REGION__STATE_MACHINE:
 				return getStateMachine();
+			case AlmostumlPackage.REGION__CURRENT_STATE:
+				if (resolve) return getCurrentState();
+				return basicGetCurrentState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -235,6 +311,9 @@ public class RegionImpl extends EObjectImpl implements Region {
 			case AlmostumlPackage.REGION__STATE_MACHINE:
 				setStateMachine((StateMachine)newValue);
 				return;
+			case AlmostumlPackage.REGION__CURRENT_STATE:
+				setCurrentState((State)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -256,6 +335,9 @@ public class RegionImpl extends EObjectImpl implements Region {
 			case AlmostumlPackage.REGION__STATE_MACHINE:
 				setStateMachine((StateMachine)null);
 				return;
+			case AlmostumlPackage.REGION__CURRENT_STATE:
+				setCurrentState((State)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -274,6 +356,8 @@ public class RegionImpl extends EObjectImpl implements Region {
 				return transition != null && !transition.isEmpty();
 			case AlmostumlPackage.REGION__STATE_MACHINE:
 				return getStateMachine() != null;
+			case AlmostumlPackage.REGION__CURRENT_STATE:
+				return currentState != null;
 		}
 		return super.eIsSet(featureID);
 	}

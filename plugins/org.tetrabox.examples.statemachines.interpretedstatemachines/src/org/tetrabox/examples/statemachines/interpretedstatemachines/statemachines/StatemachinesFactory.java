@@ -49,6 +49,15 @@ public interface StatemachinesFactory extends EFactory {
 	EventOccurrence createEventOccurrence();
 
 	/**
+	 * Returns a new object of class '<em>Util</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Util</em>'.
+	 * @generated
+	 */
+	Util createUtil();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

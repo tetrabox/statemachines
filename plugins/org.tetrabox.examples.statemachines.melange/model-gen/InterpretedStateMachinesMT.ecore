@@ -15,7 +15,19 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CustomEvent" eSuperTypes="//almostuml/Event"/>
   <eClassifiers xsi:type="ecore:EClass" name="EventOccurrence">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="event" lowerBound="1" eType="//CustomEvent"/>
+    <eAnnotations source="aspect"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="event" lowerBound="1" eType="//CustomEvent">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Util">
+    <eAnnotations source="aspect"/>
+    <eOperations name="log">
+      <eAnnotations source="aspect"/>
+      <eParameters name="l">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eParameters>
+    </eOperations>
   </eClassifiers>
   <eSubpackages name="almostuml" nsURI="http://org.tetrabox.examples.statemachines.interpretedstatemachinesmt/statemachines/almostuml/" nsPrefix="almostuml">
     <eClassifiers xsi:type="ecore:EClass" name="StateMachine" eSuperTypes="//almostuml/NamedElement">
@@ -23,7 +35,7 @@
         <eAnnotations source="aspect"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="region" lowerBound="1" upperBound="-1" eType="//almostuml/Region" containment="true" eOpposite="//almostuml/Region/stateMachine"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="queue" unique="false" upperBound="-1" eType="//EventOccurrence">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="queue" upperBound="-1" eType="//EventOccurrence" containment="true">
         <eAnnotations source="aspect"/>
       </eStructuralFeatures>
     </eClassifiers>
