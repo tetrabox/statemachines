@@ -3,3 +3,4 @@ xtend-gen
 *._trace
 *.xtendbin
 gemoc-gen
+staticdispatch-gen
